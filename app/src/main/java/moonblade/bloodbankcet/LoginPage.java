@@ -83,6 +83,7 @@ public class LoginPage extends Activity {
 //                i.putExtra("user",enter_user);
 //                i.putExtra("pass",enter_pass);
 //                startActivity(i);
+                Toast.makeText(LoginPage.this,"fine?",Toast.LENGTH_SHORT).show();
                 new SigninActivity(this,status).execute(enter_user,enter_pass);
 
             }
