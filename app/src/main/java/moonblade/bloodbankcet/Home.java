@@ -37,7 +37,7 @@ public class Home extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-asdf
+
         try{
             Intent logged = this.getIntent();
             if (logged!=null){
