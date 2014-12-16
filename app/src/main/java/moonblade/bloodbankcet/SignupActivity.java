@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,24 +18,24 @@ import java.net.URLEncoder;
 /**
  * Created by Nisham on 12/16/2014.
  */
-public class SigninActivity  extends AsyncTask<String,Void,String> {
+public class SignupActivity  extends AsyncTask<String,Void,String> {
 
     TextView statuss;
     ProgressDialog progress;
     private Context context;
     private int byGetOrPost = 0;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public SigninActivity(LoginPage context, TextView status) {
-        this.context = (Context) context; this.statuss = status;
+    public SignupActivity(signup context) {
+        this.context = (Context) context;
         progress= new ProgressDialog(this.context);
     }
 
     protected void onPreExecute(){
 
-        progress.setTitle("Logging In");
+        progress.setTitle("Signing Up");
         progress.setCanceledOnTouchOutside(false);
         progress.setCancelable(false);
-        progress.setMessage("Authenticating User");
+        progress.setMessage("Verifying Username");
         progress.show();
     }
     @Override
@@ -44,7 +45,7 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
             String username = (String)arg0[0];
             String password = (String)arg0[1];
 
-            String link="http://moonblade.site40.net/BloodBankCet/user/userlogin.php";
+            String link="http://moonblade.site40.net/BloodBankCet/user/adduser.php";
             String data  = URLEncoder.encode("username", "UTF-8")
                     + "=" + URLEncoder.encode(username, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8")
@@ -79,13 +80,14 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
         if(result.equals("success")) {
 //            Intent i = new Intent(context, Loginsuccess.class);
 //            context.startActivity(i);
-            this.statuss.setText("Success");
+
             progress.dismiss();
         }
         else
         {
-            this.statuss.setText("Invalid Credentials!!!");
+
             progress.dismiss();
         }
     }
+
 }

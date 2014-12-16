@@ -36,7 +36,7 @@ public class signup extends Activity {
                 String conpass=confpass.getText().toString();
 
                 if(password.equals(conpass)){
-                    SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
+                    /*SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
                     editor.putString(getResources().getString(R.string.pref_user_name),username);
                     editor.putString(getResources().getString(R.string.pref_pass_word),password);
                     Toast.makeText(signup.this,"Success",Toast.LENGTH_SHORT).show();
@@ -44,7 +44,8 @@ public class signup extends Activity {
                     editor.putInt("Logged_in",1);
                     editor.commit();
                     Intent home=new Intent(signup.this,Home.class);
-                    startActivity(home);
+                    startActivity(home);*/
+                    new SignupActivity(signup.this).execute(username,password);
                 }else{
                     confpass.setText("");
                     Toast.makeText(signup.this,"Passwords don't match",Toast.LENGTH_SHORT).show();
