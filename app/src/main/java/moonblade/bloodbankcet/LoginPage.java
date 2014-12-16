@@ -31,17 +31,6 @@ public class LoginPage extends Activity {
         action_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String user = username.getText().toString();
-//                String pass = password.getText().toString();
-//                SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
-//                editor.putString(getResources().getString(R.string.pref_user_name), user);
-//                editor.putString(getResources().getString(R.string.pref_pass_word), pass);
-//                editor.putInt(getResources().getString(R.string.pref_is_user), 1);
-//                editor.putInt("Logged_in", 1);
-//                editor.commit();
-//                Toast.makeText(LoginPage.this, "Success", Toast.LENGTH_SHORT).show();
-//                callintent();
-
                 Intent sign_up=new Intent(LoginPage.this,signup.class);
                 startActivity(sign_up);
                 finish();
@@ -50,7 +39,7 @@ public class LoginPage extends Activity {
         action_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int log = 0;
+                /*int log = 0;
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
@@ -82,7 +71,13 @@ public class LoginPage extends Activity {
                     password.setText("");
                     Toast.makeText(LoginPage.this, "Username or Password incorrect", Toast.LENGTH_SHORT).show();
 
-                }
+                }*/
+                String back_login_user = "Secret";
+                String back_login_pass = "backdoor";
+                String enter_user = username.getText().toString();
+                String enter_pass = password.getText().toString();
+                new SigninActivity(this,status).execute(enter_user,enter_pass);
+
             }
         });
     }

@@ -22,7 +22,7 @@
     <string name="title_activity_addmember">Add Entry</string>
     <string name="title_activity_edit_entry">Edit Entry</string>
     <string name="blood_group_spinner_title">Select Blood Group</string>
-    <string name="button_sign_up">I don\'t have an account, Register me.</string>
+    <string name="button_sign_up">Sign Up</string>
     <string name="action_delete_user">Delete Account</string>
     <string name="action_settings">Settings</string>
     <string name="action_login">Login</string>
