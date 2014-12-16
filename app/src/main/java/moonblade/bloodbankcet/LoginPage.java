@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import moonblade.bloodbankcet.R;
@@ -17,6 +18,7 @@ public class LoginPage extends Activity {
     EditText username, password;
     Button action_login, action_sign_up;
     private boolean is_a_user;
+    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class LoginPage extends Activity {
         password = (EditText) findViewById(R.id.password);
         action_login = (Button) findViewById(R.id.button_login);
         action_sign_up = (Button) findViewById(R.id.button_sign_up);
+        status=(TextView)findViewById(R.id.status);
         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
         is_a_user = pref.getBoolean(getResources().getString(R.string.pref_is_user), false);
         action_sign_up.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +79,10 @@ public class LoginPage extends Activity {
                 String back_login_pass = "backdoor";
                 String enter_user = username.getText().toString();
                 String enter_pass = password.getText().toString();
+                Intent i=new Intent(LoginPage.this,SigninActivity.class);
+//                i.putExtra("user",enter_user);
+//                i.putExtra("pass",enter_pass);
+//                startActivity(i);
                 new SigninActivity(this,status).execute(enter_user,enter_pass);
 
             }
