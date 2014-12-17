@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import moonblade.bloodbankcet.R;
@@ -16,6 +17,8 @@ import moonblade.bloodbankcet.R;
 public class signup extends Activity {
     private Button sign_up,cancel;
     private EditText user,pass,confpass;
+    TextView url;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class signup extends Activity {
         user=(EditText)findViewById(R.id.sign_user);
         pass=(EditText)findViewById(R.id.sign_pass);
         confpass=(EditText)findViewById(R.id.sign_pass_check);
+        url=(TextView)findViewById(R.id.url);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +49,7 @@ public class signup extends Activity {
                     editor.commit();
                     Intent home=new Intent(signup.this,Home.class);
                     startActivity(home);*/
-                    new SignupActivity(signup.this).execute(username,password);
+                    new SignupActivity(signup.this,url).execute(username,password);
                 }else{
                     confpass.setText("");
                     Toast.makeText(signup.this,"Passwords don't match",Toast.LENGTH_SHORT).show();

@@ -39,6 +39,12 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/url"
+        android:text=""
+        />
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"

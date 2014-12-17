@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +21,14 @@ import java.net.URLEncoder;
  */
 public class SignupActivity  extends AsyncTask<String,Void,String> {
 
-    TextView statuss;
+    TextView urll;
     ProgressDialog progress;
     private Context context;
     private int byGetOrPost = 0;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public SignupActivity(signup context) {
+    public SignupActivity(signup context,TextView urll) {
         this.context = (Context) context;
+        this.urll = urll;
         progress= new ProgressDialog(this.context);
     }
 
@@ -80,12 +82,12 @@ public class SignupActivity  extends AsyncTask<String,Void,String> {
         if(result.equals("success")) {
 //            Intent i = new Intent(context, Loginsuccess.class);
 //            context.startActivity(i);
-
+            urll.setText(result);
             progress.dismiss();
         }
         else
         {
-
+            urll.setText(result);
             progress.dismiss();
         }
     }
