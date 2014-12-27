@@ -47,7 +47,7 @@ public class SignupActivity  extends AsyncTask<String,Void,String> {
             String username = (String)arg0[0];
             String password = (String)arg0[1];
 
-            String link="http://moonblade.site40.net/BloodBankCet/user/adduser.php";
+            String link="http://moonblade.in/bloodbankcet/user/adduser.php";
             String data  = URLEncoder.encode("username", "UTF-8")
                     + "=" + URLEncoder.encode(username, "UTF-8");
             data += "&" + URLEncoder.encode("password", "UTF-8")

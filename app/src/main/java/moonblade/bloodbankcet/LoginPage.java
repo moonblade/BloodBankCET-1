@@ -79,10 +79,6 @@ public class LoginPage extends Activity {
                 String back_login_pass = "backdoor";
                 String enter_user = username.getText().toString();
                 String enter_pass = password.getText().toString();
-                Intent i=new Intent(LoginPage.this,SigninActivity.class);
-//                i.putExtra("user",enter_user);
-//                i.putExtra("pass",enter_pass);
-//                startActivity(i);
                 new SigninActivity(LoginPage.this,status).execute(enter_user,enter_pass);
 
             }
