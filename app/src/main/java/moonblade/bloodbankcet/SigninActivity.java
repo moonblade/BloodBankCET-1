@@ -77,10 +77,13 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         if(result.equals("success")) {
-//            Intent i = new Intent(context, Loginsuccess.class);
-//            context.startActivity(i);
+
             this.statuss.setText("Success");
+
             progress.dismiss();
+            Intent i = new Intent(context, Home.class);
+            context.startActivity(i);
+
         }
         else
         {
