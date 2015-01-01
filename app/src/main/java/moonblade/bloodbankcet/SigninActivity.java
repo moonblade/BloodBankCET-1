@@ -3,8 +3,10 @@ package moonblade.bloodbankcet;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -27,11 +29,11 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
     public SigninActivity(LoginPage context, TextView status) {
         this.context = (Context) context; this.statuss = status;
         progress= new ProgressDialog(this.context);
+        progress.requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     protected void onPreExecute(){
 
-        progress.setTitle("Logging In");
         progress.setCanceledOnTouchOutside(false);
         progress.setCancelable(false);
         progress.setMessage("Authenticating User");
@@ -79,7 +81,6 @@ public class SigninActivity  extends AsyncTask<String,Void,String> {
         if(result.equals("success")) {
 
             this.statuss.setText("Success");
-
             progress.dismiss();
             Intent i = new Intent(context, Home.class);
             context.startActivity(i);

@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -39,6 +40,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,11 +93,11 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         ArrayAdapter adapter=new ArrayAdapter<String>(this, R.layout.blood_item, R.id.label, blood_groups);
 
         final ListView data =(ListView)findViewById(R.id.lvdata);
-        getdatanone(data);
+//        new getdata().execute;
 //        update_red_green(data);
 
 
-        data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+/*        data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 final Cursor cursor = (Cursor) data.getItemAtPosition(position);
@@ -147,7 +158,8 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     dialog.show();
                 long_clicked = 0;
             }
-        });
+        });*/
+/*
         data.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -195,7 +207,8 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                         }
                     }
                 });
-                final AlertDialog.Builder alert = new AlertDialog.Builder(ViewBlood.this);
+*/
+ /*               final AlertDialog.Builder alert = new AlertDialog.Builder(ViewBlood.this);
                 deletebutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -235,7 +248,9 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                 return false;
             }
         });
-    }
+ */   }
+
+
 
     private void initialise_adapter() {
         blood_list = new ArrayList<String>();
@@ -253,7 +268,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         blood_adapter.setDropDownViewResource(R.layout.spinner_dropdown);
     }
 
-    private void update_red_green(ListView data){
+  /*  private void update_red_green(ListView data){
         sqldb get_size=new sqldb(ViewBlood.this);
         get_size.open();
         int size=get_size.get_row_count();
@@ -277,17 +292,17 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 //                 Toast.makeText(ViewBlood.this,""+diff,Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String blood_group = parent.getItemAtPosition(position).toString();
-        ListView data=(ListView)findViewById(R.id.lvdata);
+/*        ListView data=(ListView)findViewById(R.id.lvdata);
         if(blood_group.equals("All")){
             getdatanone(data);
         }else{
             getdatablood(data,blood_group);
-        }
+        }*/
     }
 
     @Override
@@ -305,7 +320,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
     }
     private void getdatanone(ListView data){
 
-        sqldb table = new sqldb(this);
+/*        sqldb table = new sqldb(this);
         table.open();
         Cursor c=table.readAll();
         c.moveToFirst();
@@ -314,12 +329,12 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
         data.setAdapter(adapter);
 
-        table.close();
+        table.close();*/
     }
 
     private void getdatablood(ListView data,String blood_group){
 
-        sqldb table = new sqldb(this);
+/*        sqldb table = new sqldb(this);
         table.open();
         Cursor c=table.readBlood(blood_group);
         c.moveToFirst();
@@ -328,12 +343,12 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
         data.setAdapter(adapter);
 
-        table.close();
+        table.close();*/
     }
 
     private void getdataBranch(ListView data,String branch){
 
-        sqldb table = new sqldb(this);
+/*        sqldb table = new sqldb(this);
         table.open();
         Cursor c=table.readBranch(branch);
         c.moveToFirst();
@@ -342,7 +357,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
         data.setAdapter(adapter);
 
-        table.close();
+        table.close();*/
     }
 
     @Override

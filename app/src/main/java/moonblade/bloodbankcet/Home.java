@@ -59,7 +59,7 @@ public class Home extends Activity {
         seperatorview=(View)findViewById(R.id.seperatorview);
         seperatoradd.setVisibility(View.INVISIBLE);
 
-        if(logged_in==0){
+        if(logged_in==1){
             add.setVisibility(View.INVISIBLE);
             seperatorview.setVisibility(View.INVISIBLE);
         }else{

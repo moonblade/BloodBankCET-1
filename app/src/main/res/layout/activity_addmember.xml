@@ -49,6 +49,13 @@
                 android:ems="10"
                 android:layout_below="@+id/etdbname"
                 android:layout_gravity="center_horizontal" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etdbjoin"
+                android:hint="Join Year"
+                android:ems="10"
+                android:layout_gravity="center_horizontal" />
 
 
  <Spinner
