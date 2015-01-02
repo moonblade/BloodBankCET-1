@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.Menu;
@@ -22,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,12 +38,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -49,25 +54,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.Inflater;
+
+import static moonblade.bloodbankcet.R.layout.listviewlayout;
 
 public class ViewBlood extends Activity implements AdapterView.OnItemSelectedListener{
 
     ArrayList<String> blood_list;
+    private String jsonResult;
+    ProgressDialog dialog;
+    JSONArray jsonMainNode;
+    JSONObject jsonResponse;
     ArrayAdapter<String> blood_adapter;
     private int curday,curmon,curyear;
+    private String url="http://moonblade.in/bloodbankcet/blood/fetchdetails.php";
     private long totdays;
     private int number_of_months;
     int long_clicked=0;
     private int logged_in=0,is_admin=0;
     Spinner spinner_blood;
     ImageView green,red;
+//    ListView data =(ListView)findViewById(R.id.lvdata);
     private CursorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +110,8 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         String[] blood_groups = getResources().getStringArray(R.array.bloodgroups);
         ArrayAdapter adapter=new ArrayAdapter<String>(this, R.layout.blood_item, R.id.label, blood_groups);
 
-        final ListView data =(ListView)findViewById(R.id.lvdata);
-//        new getdata().execute;
+//        final ListView data =(ListView)findViewById(R.id.lvdata);
+        accessWebService(this);
 //        update_red_green(data);
 
 
@@ -250,8 +268,112 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         });
  */   }
 
+    public void accessWebService(ViewBlood viewblood) {
+        dialog = new ProgressDialog(viewblood);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Populating List");
+        dialog.show();
+        JsonReadTask task = new JsonReadTask();
+        // passes values for the urls string array
+        task.execute(new String[]{url});
+    }
 
+    private class JsonReadTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(params[0]);
+            try {
+                HttpResponse response = httpclient.execute(httppost);
+                jsonResult = inputStreamToString(
+                        response.getEntity().getContent()).toString();
+            }
 
+            catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
+            try {
+                while ((rLine = rd.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            }
+
+            catch (IOException e) {
+                // e.printStackTrace();
+                Toast.makeText(getApplicationContext(),
+                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+            }
+            return answer;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            ListDrawer();
+        }
+
+    }// end async task
+
+    // build hash set for list view
+    public void ListDrawer() {
+        final ListView data =(ListView)findViewById(R.id.lvdata);
+        List<Map<String, String>> donorList = new ArrayList<Map<String, String>>();
+
+        try {
+            jsonResponse = new JSONObject(jsonResult);
+            jsonMainNode = jsonResponse.optJSONArray("user_info");
+            ArrayList<Donor> newUsers = Donor.fromJson(jsonMainNode);
+            DonorAdapter donorAdapter = new DonorAdapter(this,newUsers);
+            donorAdapter.addAll(newUsers);
+
+//            for (int i = 0; i < jsonMainNode.length(); i++) {
+//                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+//                String name = jsonChildNode.optString("name");
+//                String bg = jsonChildNode.optString("bloodgroup");
+//                String outPut;
+//                outPut=name;
+//                donorList.add(createdonor("name", outPut));
+//                donorList.add(createdonor("bg", bg));
+//            }
+//        }
+    } catch (JSONException e) {
+            Toast.makeText(getApplicationContext(), "Error" + e.toString(),
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        int[] to = new int[]{R.id.set_name,R.id.set_bg};
+//        adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
+//        data.setAdapter(adapter);
+
+//        SimpleAdapter simpleAdapter = new SimpleAdapter(this, donorList,
+//                listviewlayout,
+//                new String[] { "name" }, new int[] { R.id.set_name });
+//
+//        DonorAdapter donorAdapter=new DonorAdapter(this,donorList);
+//        data.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+//        data.setMultiChoiceModeListener(new ModeCallback());
+//        data.setAdapter(simpleAdapter);
+        dialog.dismiss();
+    }
+
+    private HashMap<String, String> createdonor(String name, String number) {
+        HashMap<String, String> donorNameNo = new HashMap<String, String>();
+        donorNameNo.put(name, number);
+        return donorNameNo;
+    }
+
+/*sdfghjklkjhgfdssdfghjklkjgfds*/
     private void initialise_adapter() {
         blood_list = new ArrayList<String>();
         blood_list.add("All");
