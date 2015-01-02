@@ -110,11 +110,79 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         String[] blood_groups = getResources().getStringArray(R.array.bloodgroups);
         ArrayAdapter adapter=new ArrayAdapter<String>(this, R.layout.blood_item, R.id.label, blood_groups);
 
-//        final ListView data =(ListView)findViewById(R.id.lvdata);
+        final ListView data =(ListView)findViewById(R.id.lvdata);
         accessWebService(this);
 //        update_red_green(data);
 
+        data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    JSONObject jsonChildNode = jsonMainNode.getJSONObject(position);
+                    final Donor item=new Donor(jsonChildNode);
 
+                    final Dialog dialog = new Dialog(ViewBlood.this);
+                    dialog.setTitle("Details of Student");
+                    dialog.setContentView(R.layout.dialoglayout);
+                    TextView namea = (TextView) dialog.findViewById(R.id.tvdiagname);
+                    TextView brancha = (TextView) dialog.findViewById(R.id.tvdiagbranch);
+                    TextView bg = (TextView) dialog.findViewById(R.id.tvdiagbg);
+                    final TextView mob = (TextView) dialog.findViewById(R.id.tvdiagmob);
+                    TextView hos = (TextView) dialog.findViewById(R.id.tvdiaghostel);
+                    TextView dat = (TextView) dialog.findViewById(R.id.tvdiagdate);
+                    ImageView indicator=(ImageView)dialog.findViewById(R.id.indicator);
+
+                    final Button dbitton = (Button) dialog.findViewById(R.id.bdiagdok);
+                    final Button callbutton = (Button) dialog.findViewById(R.id.bdiagcall);
+
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    namea.setText(item.name);
+                    brancha.setText(item.branch);
+                    bg.setText(item.bloodgroup);
+                    mob.setText(item.mobile);
+                    hos.setText(item.hostel);
+
+                    long dateval=item.date;
+                    Date date = new Date(dateval);
+                    int day=date.getDate();
+                    int month=date.getMonth()+1;
+                    int year=date.getYear();
+                    int total=year*365+month*30+day;
+                    if(totdays-total<(30*number_of_months)){
+                        indicator.setImageResource(R.drawable.red);
+                    }else{
+                        indicator.setImageResource(R.drawable.green);
+                    }
+                    SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
+                    dat.setText(df2.format(date));
+
+                    dbitton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.cancel();
+                        }
+                    });
+                    callbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:" + item.mobile));
+                            startActivity(callIntent);
+
+                        }
+                    });
+                    if (long_clicked == 0)
+                        dialog.show();
+                    long_clicked = 0;
+
+
+                } catch (JSONException e) {
+//                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 /*        data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
