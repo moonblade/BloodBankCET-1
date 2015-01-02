@@ -335,7 +335,9 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
             jsonMainNode = jsonResponse.optJSONArray("user_info");
             ArrayList<Donor> newUsers = Donor.fromJson(jsonMainNode);
             DonorAdapter donorAdapter = new DonorAdapter(this,newUsers);
+//            donorAdapter.addAll(newUsers);
             donorAdapter.addAll(newUsers);
+            data.setAdapter(donorAdapter);
 
 //            for (int i = 0; i < jsonMainNode.length(); i++) {
 //                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
