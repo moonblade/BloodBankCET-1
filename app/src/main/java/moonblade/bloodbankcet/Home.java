@@ -29,6 +29,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class Home extends Activity {
     private int logged_in=0,is_admin=0;
+    private boolean admin_unlocked,admin_logged_in;
     Button viewblood,add;
     View seperatorview,seperatoradd;
     private static final int FILE_SELECT_CODE = 0;
@@ -44,6 +45,7 @@ public class Home extends Activity {
                 SharedPreferences prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
                 logged_in=prefs.getInt("Logged_in", 0);
                 is_admin=prefs.getInt(getResources().getString(R.string.pref_is_admin), 0);
+                admin_unlocked=prefs.getBoolean(getResources().getString(R.string.pref_admin_unlock), false);
             }
         }
         catch (Exception e){
@@ -59,7 +61,7 @@ public class Home extends Activity {
         seperatorview=(View)findViewById(R.id.seperatorview);
         seperatoradd.setVisibility(View.INVISIBLE);
 
-        if(logged_in==1){
+        if(logged_in!=1){
             add.setVisibility(View.INVISIBLE);
             seperatorview.setVisibility(View.INVISIBLE);
         }else{
@@ -114,6 +116,8 @@ public class Home extends Activity {
             export.setVisible(false);
         }
 
+            MenuItem admin_login=menu.findItem(R.id.action_admin_login);
+            admin_login.setVisible(admin_unlocked);
         return true;
     }
 
