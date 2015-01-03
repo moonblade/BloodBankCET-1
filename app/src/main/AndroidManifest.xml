@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/drawericon"
@@ -54,10 +55,6 @@
         <activity
             android:name=".signup"
             android:label="@string/title_activity_signup" >
-        </activity>
-        <activity
-            android:name=".AdminLogin"
-            android:label="@string/title_activity_admin_login" >
         </activity>
     </application>
 

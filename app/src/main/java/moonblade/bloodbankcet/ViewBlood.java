@@ -85,7 +85,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
     private int logged_in=0,is_admin=0;
     Spinner spinner_blood;
     ImageView green,red;
-    //    ListView data =(ListView)findViewById(R.id.lvdata);
+//    ListView data =(ListView)findViewById(R.id.lvdata);
     private CursorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     final Button dbitton = (Button) dialog.findViewById(R.id.bdiagdok);
                     final Button callbutton = (Button) dialog.findViewById(R.id.bdiagcall);
 
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     namea.setText(item.name);
                     brancha.setText(item.branch);
                     bg.setText(item.bloodgroup);
@@ -393,6 +393,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
     }// end async task
 
+    // build hash set for list view
     public void ListDrawer() {
         final ListView data =(ListView)findViewById(R.id.lvdata);
         List<Map<String, String>> donorList = new ArrayList<Map<String, String>>();
@@ -402,10 +403,21 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
             jsonMainNode = jsonResponse.optJSONArray("user_info");
             ArrayList<Donor> newUsers = Donor.fromJson(jsonMainNode);
             DonorAdapter donorAdapter = new DonorAdapter(this,newUsers);
+//            donorAdapter.addAll(newUsers);
             donorAdapter.addAll(newUsers);
             data.setAdapter(donorAdapter);
 
-        } catch (JSONException e) {
+//            for (int i = 0; i < jsonMainNode.length(); i++) {
+//                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+//                String name = jsonChildNode.optString("name");
+//                String bg = jsonChildNode.optString("bloodgroup");
+//                String outPut;
+//                outPut=name;
+//                donorList.add(createdonor("name", outPut));
+//                donorList.add(createdonor("bg", bg));
+//            }
+//        }
+    } catch (JSONException e) {
             Toast.makeText(getApplicationContext(), "Error" + e.toString(),
                     Toast.LENGTH_SHORT).show();
         }
@@ -431,7 +443,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         return donorNameNo;
     }
 
-    /*sdfghjklkjhgfdssdfghjklkjgfds*/
+/*sdfghjklkjhgfdssdfghjklkjgfds*/
     private void initialise_adapter() {
         blood_list = new ArrayList<String>();
         blood_list.add("All");

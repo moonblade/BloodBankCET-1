@@ -12,12 +12,14 @@
     <string name="dummy_title"></string>
     <string name="choose_blood">Blood Group</string>
     <string name="number_of_months">Months b/w Donation</string>
+
     <string name="pref_months">number_of_months</string>
     <string name="pref_user_name">Username</string>
     <string name="pref_pass_word">Password</string>
     <string name="pref_is_user">User_exist</string>
     <string name="pref_is_admin">is_admin</string>
     <string name="pref_admin_unlock">admin_unlocked</string>
+
     <string name="donation_date">Last Donation</string>
     <string name="title_activity_view_blood">DATABASE</string>
     <string name="title_activity_addmember">Add Entry</string>
@@ -47,7 +49,5 @@
     <string name="title_activity_signup">signup</string>
     <string name="pref">admin_unlocked</string>
     <string name="action_admin_login">Admin Login</string>
-    <string name="title_activity_admin_login">AdminLogin</string>
-    <string name="pref_admin_logged_in">admin_logged_in</string>
 
 </resources>

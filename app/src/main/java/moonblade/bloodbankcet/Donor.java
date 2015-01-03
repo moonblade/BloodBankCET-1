@@ -10,18 +10,16 @@ import java.util.ArrayList;
  * Created by Nisham on 1/2/2015.
  */
 public class Donor {
-    public int id;
-    public String name;
-    public String bloodgroup;
-    public String branch;
-    public String hostel;
-    public String mobile;
-    public long date;
-    public int year;
+      public String name;
+      public String bloodgroup;
+      public String branch;
+      public String hostel;
+      public String mobile;
+      public long date;
+      public int year;
 
     public Donor(JSONObject object){
         try {
-            this.id = object.getInt("id");
             this.name = object.getString("name");
             this.bloodgroup = object.getString("bloodgroup");
             this.branch = object.getString("branch");

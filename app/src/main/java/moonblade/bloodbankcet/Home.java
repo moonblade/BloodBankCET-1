@@ -118,8 +118,8 @@ public class Home extends Activity {
             export.setVisible(false);
         }
 
-        MenuItem admin_login=menu.findItem(R.id.action_admin_login);
-        admin_login.setVisible(admin_unlocked);
+            MenuItem admin_login=menu.findItem(R.id.action_admin_login);
+            admin_login.setVisible(admin_unlocked);
         return true;
     }
 
@@ -141,8 +141,7 @@ public class Home extends Activity {
             finish();
         }
         if(id==R.id.action_admin_login){
-            Intent adminlogin=new Intent(getApplicationContext(),AdminLogin.class);
-            startActivity(adminlogin);
+            Toast.makeText(getApplicationContext(),String.valueOf(admin_unlocked),Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_export) {
 //            csv_wtf();
