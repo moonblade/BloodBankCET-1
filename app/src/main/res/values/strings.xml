@@ -49,5 +49,6 @@
     <string name="action_admin_login">Admin Login</string>
     <string name="title_activity_admin_login">AdminLogin</string>
     <string name="pref_admin_logged_in">admin_logged_in</string>
+    <string name="title_activity_about">About</string>
 
 </resources>

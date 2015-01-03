@@ -30,6 +30,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 public class Home extends Activity {
     private int logged_in=0,is_admin=0;
     private boolean admin_unlocked,admin_logged_in;
+    private Button about;
     Button viewblood,add;
     View seperatorview,seperatoradd;
     private static final int FILE_SELECT_CODE = 0;
@@ -58,6 +59,7 @@ public class Home extends Activity {
             invalidateOptionsMenu();
 
         add=(Button)findViewById(R.id.add);
+        about=(Button)findViewById(R.id.about);
         viewblood=(Button)findViewById(R.id.viewblood);
         seperatoradd=(View)findViewById(R.id.seperatoradd);
         seperatorview=(View)findViewById(R.id.seperatorview);
@@ -84,6 +86,13 @@ public class Home extends Activity {
                 Intent view=new Intent(Home.this,ViewBlood.class);
                 view.putExtra("logged",logged_in);
                 startActivity(view);
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent about=new Intent(getApplicationContext(),About.class);
+                startActivity(about);
             }
         });
 
