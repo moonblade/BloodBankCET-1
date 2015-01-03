@@ -122,6 +122,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     final Donor item=new Donor(jsonChildNode);
 
                     final Dialog dialog = new Dialog(ViewBlood.this);
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setTitle("Details of Student");
                     dialog.setContentView(R.layout.dialoglayout);
                     TextView namea = (TextView) dialog.findViewById(R.id.tvdiagname);
@@ -135,7 +136,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     final Button dbitton = (Button) dialog.findViewById(R.id.bdiagdok);
                     final Button callbutton = (Button) dialog.findViewById(R.id.bdiagcall);
 
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
                     namea.setText(item.name);
                     brancha.setText(item.branch);
                     bg.setText(item.bloodgroup);
