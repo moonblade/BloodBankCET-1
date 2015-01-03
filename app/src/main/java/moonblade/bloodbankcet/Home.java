@@ -45,12 +45,14 @@ public class Home extends Activity {
                 SharedPreferences prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
                 logged_in=prefs.getInt("Logged_in", 0);
                 is_admin=prefs.getInt(getResources().getString(R.string.pref_is_admin), 0);
-                admin_unlocked=prefs.getBoolean(getResources().getString(R.string.pref_admin_unlock), false);
             }
         }
         catch (Exception e){
 
         }
+
+        SharedPreferences prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
+        admin_unlocked=prefs.getBoolean(getResources().getString(R.string.pref_admin_unlock), false);
 
         if(logged_in==1)
             invalidateOptionsMenu();
@@ -137,6 +139,9 @@ public class Home extends Activity {
             Intent login =new Intent(Home.this,LoginPage.class);
             startActivity(login);
             finish();
+        }
+        if(id==R.id.action_admin_login){
+            Toast.makeText(getApplicationContext(),String.valueOf(admin_unlocked),Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_export) {
 //            csv_wtf();
