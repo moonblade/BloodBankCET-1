@@ -45,13 +45,14 @@ public class DonorAdapter extends ArrayAdapter<Donor>{
         Date date=new Date(dateval);
         Date cur=new Date();
 
-        current%=1000;
-   /*   long time= System.currentTimeMillis();
-        time%=1000;
-        time%=100000;
-   */
-        double three=52704;
-        if(current-dateval<three*10000){
+        long diff = cur.getTime() - date.getTime();
+        long seconds = diff / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+        long months = days / 30;
+
+        if(months<3){
             indicator.setImageResource(R.drawable.red);
         }else{
             indicator.setImageResource(R.drawable.green);

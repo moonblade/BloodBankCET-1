@@ -331,7 +331,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         dialog = new ProgressDialog(viewblood);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.setMessage("Populating List");
         dialog.show();
         JsonReadTask task = new JsonReadTask();
@@ -379,14 +379,17 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
         @Override
         protected void onPostExecute(String result) {
-            ListDrawer();
+           try{
+               ListDrawer();
+           }catch (Exception e){
+
+           }
         }
 
     }// end async task
 
     public void ListDrawer() {
         final ListView data =(ListView)findViewById(R.id.lvdata);
-        List<Map<String, String>> donorList = new ArrayList<Map<String, String>>();
 
         try {
             jsonResponse = new JSONObject(jsonResult);
@@ -401,28 +404,9 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     Toast.LENGTH_SHORT).show();
         }
 
-        int[] to = new int[]{R.id.set_name,R.id.set_bg};
-//        adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
-//        data.setAdapter(adapter);
-
-//        SimpleAdapter simpleAdapter = new SimpleAdapter(this, donorList,
-//                listviewlayout,
-//                new String[] { "name" }, new int[] { R.id.set_name });
-//
-//        DonorAdapter donorAdapter=new DonorAdapter(this,donorList);
-//        data.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-//        data.setMultiChoiceModeListener(new ModeCallback());
-//        data.setAdapter(simpleAdapter);
         dialog.dismiss();
     }
 
-    private HashMap<String, String> createdonor(String name, String number) {
-        HashMap<String, String> donorNameNo = new HashMap<String, String>();
-        donorNameNo.put(name, number);
-        return donorNameNo;
-    }
-
-    /*sdfghjklkjhgfdssdfghjklkjgfds*/
     private void initialise_adapter() {
         blood_list = new ArrayList<String>();
         blood_list.add("All");
@@ -439,41 +423,15 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         blood_adapter.setDropDownViewResource(R.layout.spinner_dropdown);
     }
 
-  /*  private void update_red_green(ListView data){
-        sqldb get_size=new sqldb(ViewBlood.this);
-        get_size.open();
-        int size=get_size.get_row_count();
-        get_size.close();
-        setcurrentdate();
-        int visibleChildCount = (data.getLastVisiblePosition() - data.getFirstVisiblePosition()) + 1;
-        int firstPosition = data.getFirstVisiblePosition() - data.getHeaderViewsCount();
-        Toast.makeText(ViewBlood.this,""+data.getChildCount(),Toast.LENGTH_SHORT).show();
-        for(int datai=firstPosition;datai<size;datai++){
-
-            final Cursor cursor = (Cursor) data.getItemAtPosition(datai);
-            Long val=cursor.getLong(cursor.getColumnIndexOrThrow("_date"));
-            Date date = new Date(val);
-            int day=date.getDay();
-            int month=date.getMonth()+1;
-            int year=date.getYear();
-            long total=year*365+month*30+day;
-            long diff=totdays-total;
-            if(diff<(30*number_of_months)){
-//                 green.setVisibility(View.INVISIBLE);
-//                 Toast.makeText(ViewBlood.this,""+diff,Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String blood_group = parent.getItemAtPosition(position).toString();
-/*        ListView data=(ListView)findViewById(R.id.lvdata);
+        ListView data=(ListView)findViewById(R.id.lvdata);
         if(blood_group.equals("All")){
-            getdatanone(data);
+//            getdatanone(data);
         }else{
-            getdatablood(data,blood_group);
-        }*/
+//            getdatablood(data,blood_group);
+        }
     }
 
     @Override
@@ -486,7 +444,6 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         curyear = c.get(Calendar.YEAR);
         curmon = c.get(Calendar.MONTH)+1;
         curday = c.get(Calendar.DAY_OF_MONTH);
-//        Toast.makeText(ViewBlood.this,""+curday+" "+curmon+" "+curyear,Toast.LENGTH_SHORT).show();
         totdays=curyear*365+curmon*30+curday;
     }
     private void getdatanone(ListView data){
