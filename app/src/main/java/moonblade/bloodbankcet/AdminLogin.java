@@ -25,7 +25,7 @@ import java.net.URLEncoder;
 import moonblade.bloodbankcet.R;
 
 public class AdminLogin extends Activity {
-    private EditText user,pass;
+private EditText user,pass;
     private Button login;
     private TextView status;
     @Override
@@ -42,7 +42,7 @@ public class AdminLogin extends Activity {
             public void onClick(View v) {
                 String username=user.getText().toString();
                 String password=pass.getText().toString();
-                new AdminSigninActivity(getApplicationContext(),status).execute(username,password);
+                new AdminSigninActivity(AdminLogin.this,status).execute(username,password);
             }
         });
     }
@@ -55,9 +55,8 @@ public class AdminLogin extends Activity {
         private Context context;
         private int byGetOrPost = 0;
         //flag 0 means get and 1 means post.(By default it is get.)
-        public AdminSigninActivity(Context context, TextView status) {
-            this.context = (Context) context;
-            this.statuss = status;
+        public AdminSigninActivity(AdminLogin context, TextView status) {
+            this.context = (Context) context; this.statuss = status;
             progress= new ProgressDialog(this.context);
             progress.requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
@@ -76,7 +75,7 @@ public class AdminLogin extends Activity {
                 String username = (String)arg0[0];
                 String password = (String)arg0[1];
 
-                String link="http://moonblade.in/bloodbankcet/admin/adminlogin.php";
+                String link="http://moonblade.in/bloodbankcet/admin/userlogin.php";
                 String data  = URLEncoder.encode("username", "UTF-8")
                         + "=" + URLEncoder.encode(username, "UTF-8");
                 data += "&" + URLEncoder.encode("password", "UTF-8")
