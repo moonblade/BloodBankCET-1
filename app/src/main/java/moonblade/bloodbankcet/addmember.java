@@ -122,7 +122,6 @@ public class addmember extends Activity {
 
         protected void onPreExecute(){
 
-//            progress.setTitle("Submitting Data");
             progress.setCanceledOnTouchOutside(false);
             progress.setCancelable(false);
             progress.setMessage("Sending data to server");
@@ -182,8 +181,7 @@ public class addmember extends Activity {
                 startActivity(k);
                 Toast.makeText(addmember.this,"Added Successfully",Toast.LENGTH_SHORT).show();
                 progress.dismiss();
-            }
-            else
+            }else
             {
                 Intent k = new Intent(addmember.this,Home.class);
                 startActivity(k);

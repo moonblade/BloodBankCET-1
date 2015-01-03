@@ -4,126 +4,118 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:columnCount="2"
+        android:layout_gravity="center_horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="right"
+android:textAlignment="gravity"
         android:text="Name :"
         android:id="@+id/tvdname"
-        android:layout_marginLeft="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_row="0"    
+        android:layout_column="0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiagname"
-        android:layout_marginLeft="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tvdname" />
+        android:layout_row="0"
+        android:layout_column="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Branch :"
-        android:id="@+id/tvdbranch"
-        android:layout_below="@+id/tvdname"
-        android:layout_toLeftOf="@+id/tvdiagname" />
+        android:layout_row="1"
+        android:layout_column="0"
+        android:id="@+id/tvdbranch"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiagbranch"
-        android:layout_below="@+id/tvdiagname"
-        android:layout_alignLeft="@+id/tvdiagname"
-        android:layout_alignStart="@+id/tvdiagname" />
+        android:layout_row="1"
+        android:layout_column="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Blood Group :"
         android:id="@+id/tvdbg"
-        android:layout_below="@+id/tvdbranch"
-        android:layout_toLeftOf="@+id/tvdiagname" />
+        android:layout_row="2"
+        android:layout_column="0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiagbg"
-        android:layout_below="@+id/tvdiagbranch"
-        android:layout_alignLeft="@+id/tvdiagbranch"
-        android:layout_alignStart="@+id/tvdiagbranch" />
+        android:layout_row="2"
+        android:layout_column="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mobile :"
         android:id="@+id/tvdmob"
-        android:layout_below="@+id/tvdbg"
-        android:layout_alignRight="@+id/tvdbg"
-        android:layout_alignEnd="@+id/tvdbg" />
+        android:layout_row="3"
+        android:layout_column="0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiagmob"
-        android:layout_alignTop="@+id/tvdmob"
-        android:layout_alignLeft="@+id/tvdiagbg"
-        android:layout_alignStart="@+id/tvdiagbg" />
+        android:layout_row="3"
+        android:layout_column="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hostel :"
-        android:id="@+id/tvdhostel"
-        android:layout_below="@+id/tvdmob"
-        android:layout_toLeftOf="@+id/tvdiagname" />
+        android:layout_row="4"
+        android:layout_column="0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiaghostel"
-        android:layout_below="@+id/tvdiagmob"
-        android:layout_alignLeft="@+id/tvdiagmob"
-        android:layout_alignStart="@+id/tvdiagmob" />
+        android:layout_row="4"
+        android:layout_column="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last Donation :"
-        android:id="@+id/tvddate"
-        android:layout_below="@+id/tvdhostel"
-        android:layout_toLeftOf="@+id/tvdiagname" />
+        android:layout_row="5"
+        android:layout_column="0"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvdiagdate"
-        android:layout_below="@+id/tvdiaghostel"
-        android:layout_alignLeft="@+id/tvdiagmob"
-        android:layout_alignStart="@+id/tvdiagmob" />
-
-    <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/indicator"
-    android:visibility="visible"
-    android:layout_alignParentLeft="true"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
-
-
+        android:layout_row="5"
+        android:layout_column="1"/>
+    </GridLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="0dp"
-        android:layout_below="@+id/tvdiagdate"
         android:id="@+id/seperator"
         android:background="?android:attr/dividerVertical" />
     <LinearLayout
@@ -151,6 +143,6 @@
             android:id="@+id/bdiagcall"
             android:text="Call" />
     </LinearLayout>
-
+    </LinearLayout>
 </RelativeLayout>
 

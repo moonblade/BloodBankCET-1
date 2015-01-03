@@ -112,7 +112,6 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
         final ListView data =(ListView)findViewById(R.id.lvdata);
         accessWebService(this);
-//        update_red_green(data);
 
         data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -131,7 +130,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     final TextView mob = (TextView) dialog.findViewById(R.id.tvdiagmob);
                     TextView hos = (TextView) dialog.findViewById(R.id.tvdiaghostel);
                     TextView dat = (TextView) dialog.findViewById(R.id.tvdiagdate);
-                    ImageView indicator=(ImageView)dialog.findViewById(R.id.indicator);
+//                    ImageView indicator=(ImageView)dialog.findViewById(R.id.indicator);
 
                     final Button dbitton = (Button) dialog.findViewById(R.id.bdiagdok);
                     final Button callbutton = (Button) dialog.findViewById(R.id.bdiagcall);
@@ -145,15 +144,6 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
                     long dateval=item.date;
                     Date date = new Date(dateval);
-                    int day=date.getDate();
-                    int month=date.getMonth()+1;
-                    int year=date.getYear();
-                    int total=year*365+month*30+day;
-                    if(totdays-total<(30*number_of_months)){
-                        indicator.setImageResource(R.drawable.red);
-                    }else{
-                        indicator.setImageResource(R.drawable.green);
-                    }
                     SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
                     dat.setText(df2.format(date));
 
@@ -500,45 +490,12 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         totdays=curyear*365+curmon*30+curday;
     }
     private void getdatanone(ListView data){
-
-/*        sqldb table = new sqldb(this);
-        table.open();
-        Cursor c=table.readAll();
-        c.moveToFirst();
-        String[] columns = new String[] {table.KEY_NAME,table.KEY_BG};
-        int[] to = new int[]{R.id.set_name,R.id.set_bg};
-        adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
-        data.setAdapter(adapter);
-
-        table.close();*/
     }
 
     private void getdatablood(ListView data,String blood_group){
-
-/*        sqldb table = new sqldb(this);
-        table.open();
-        Cursor c=table.readBlood(blood_group);
-        c.moveToFirst();
-        String[] columns = new String[] {table.KEY_NAME,table.KEY_BG};
-        int[] to = new int[]{R.id.set_name,R.id.set_bg};
-        adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
-        data.setAdapter(adapter);
-
-        table.close();*/
     }
 
     private void getdataBranch(ListView data,String branch){
-
-/*        sqldb table = new sqldb(this);
-        table.open();
-        Cursor c=table.readBranch(branch);
-        c.moveToFirst();
-        String[] columns = new String[] {table.KEY_NAME,table.KEY_BG};
-        int[] to = new int[]{R.id.set_name,R.id.set_bg};
-        adapter = new SimpleCursorAdapter(ViewBlood.this,R.layout.listviewlayout,c,columns,to,0);
-        data.setAdapter(adapter);
-
-        table.close();*/
     }
 
     @Override
