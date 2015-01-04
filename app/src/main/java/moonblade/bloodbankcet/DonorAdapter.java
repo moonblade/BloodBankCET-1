@@ -45,14 +45,20 @@ public class DonorAdapter extends ArrayAdapter<Donor>{
         Date date=new Date(dateval);
         Date cur=new Date();
 
-        long diff = cur.getTime() - date.getTime();
-        long seconds = diff / 1000;
-        long minutes = seconds / 60;
-        long hours = minutes / 60;
-        long days = hours / 24;
-        long months = days / 30;
+        int daygiv=date.getDay();
+        int mongiv=date.getMonth()+1;
+        int yeargiv=date.getYear();
+        long givtot=daygiv+mongiv*30+yeargiv*365;
 
-        if(months<3){
+        int daycur=cur.getDay();
+        int moncur=cur.getMonth()+1;
+        int yearcur=cur.getYear()+1900;
+        long curtot=daycur+moncur*30+yearcur*365;
+
+        long difference= curtot-givtot;
+        long accepted_diff=30*3;
+
+        if(difference<accepted_diff){
             indicator.setImageResource(R.drawable.red);
         }else{
             indicator.setImageResource(R.drawable.green);

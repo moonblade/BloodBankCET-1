@@ -130,7 +130,6 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                     final TextView mob = (TextView) dialog.findViewById(R.id.tvdiagmob);
                     TextView hos = (TextView) dialog.findViewById(R.id.tvdiaghostel);
                     TextView dat = (TextView) dialog.findViewById(R.id.tvdiagdate);
-//                    ImageView indicator=(ImageView)dialog.findViewById(R.id.indicator);
 
                     final Button dbitton = (Button) dialog.findViewById(R.id.bdiagdok);
                     final Button callbutton = (Button) dialog.findViewById(R.id.bdiagcall);
@@ -144,6 +143,8 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
                     long dateval=item.date;
                     Date date = new Date(dateval);
+                    Date sdate=new Date();
+
                     SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yy");
                     dat.setText(df2.format(date));
 
