@@ -188,7 +188,7 @@ public class LoginPage extends Activity {
                 progress.dismiss();
                 Intent i = new Intent(context, Home.class);
                 SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
-                editor.putInt("Logged_in", 1);
+                editor.putBoolean(getResources().getString(R.string.pref_logged_in), true);
                 editor.commit();
                 context.startActivity(i);
 

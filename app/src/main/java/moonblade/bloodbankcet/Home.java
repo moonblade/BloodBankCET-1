@@ -30,7 +30,8 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 
 public class Home extends Activity {
-    private int logged_in=0,is_admin=0;
+    private boolean logged_in;
+    private int is_admin=0;
     private boolean admin_unlocked,admin_logged_in;
     private Button about;
     Button viewblood,add;
@@ -45,8 +46,7 @@ public class Home extends Activity {
             Intent logged = this.getIntent();
             if (logged!=null){
                 SharedPreferences prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
-                logged_in=prefs.getInt("Logged_in", 0);
-                is_admin=prefs.getInt(getResources().getString(R.string.pref_is_admin), 0);
+                logged_in=prefs.getBoolean(getResources().getString(R.string.pref_logged_in), false);
             }
         }
         catch (Exception e){
@@ -57,7 +57,7 @@ public class Home extends Activity {
         admin_unlocked=prefs.getBoolean(getResources().getString(R.string.pref_admin_unlock), false);
         admin_logged_in=prefs.getBoolean(getResources().getString(R.string.pref_admin_logged_in),false);
 
-        if(logged_in==1)
+        if(logged_in)
             invalidateOptionsMenu();
 
         add=(Button)findViewById(R.id.add);
@@ -67,12 +67,15 @@ public class Home extends Activity {
         seperatorview=(View)findViewById(R.id.seperatorview);
         seperatoradd.setVisibility(View.INVISIBLE);
 
-        if(logged_in!=1){
+        if(!logged_in){
             add.setVisibility(View.INVISIBLE);
             seperatorview.setVisibility(View.INVISIBLE);
         }else{
             add.setVisibility(View.VISIBLE);
             seperatorview.setVisibility(View.VISIBLE);
+        }
+        if(admin_logged_in){
+            add.setVisibility(View.VISIBLE);
         }
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -116,17 +119,15 @@ public class Home extends Activity {
         MenuItem loginn=menu.findItem(R.id.action_login);
         admin_login.setVisible(admin_unlocked);
 
-        if (logged_in==1) {
+        if (logged_in) {
             loginn.setVisible(false);
             logout.setVisible(true);
             admin_login.setVisible(false);
 
-        }
-
-        if (logged_in==0) {
+        }else{
             logout.setVisible(false);
-
         }
+
          if(admin_logged_in){
             logout.setVisible(admin_logged_in);
              admin_login.setVisible(!admin_logged_in);
@@ -160,7 +161,7 @@ public class Home extends Activity {
 
      if (id == R.id.action_logout){
             SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
-            editor.putInt("Logged_in",0);
+            editor.putBoolean(getResources().getString(R.string.pref_logged_in),false);
             editor.putBoolean(getResources().getString(R.string.pref_is_admin),false);
             editor.putBoolean(getResources().getString(R.string.pref_admin_logged_in),false);
             editor.commit();
