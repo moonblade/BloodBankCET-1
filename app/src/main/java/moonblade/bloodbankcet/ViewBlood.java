@@ -501,7 +501,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
                 String blood_group = parent.getItemAtPosition(position).toString();
                 ListView data=(ListView)findViewById(R.id.lvdata);
                 if(blood_group.equals("All")){
-                    getdatanone(data);
+//                    accessWebService(ViewBlood.this);
                 }else{
                     getdatablood(data,blood_group);
                 }

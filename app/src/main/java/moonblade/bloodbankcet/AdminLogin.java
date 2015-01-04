@@ -75,7 +75,7 @@ private EditText user,pass;
                 String username = (String)arg0[0];
                 String password = (String)arg0[1];
 
-                String link="http://moonblade.in/bloodbankcet/admin/userlogin.php";
+                String link="http://moonblade.in/bloodbankcet/admin/adminlogin.php";
                 String data  = URLEncoder.encode("username", "UTF-8")
                         + "=" + URLEncoder.encode(username, "UTF-8");
                 data += "&" + URLEncoder.encode("password", "UTF-8")
