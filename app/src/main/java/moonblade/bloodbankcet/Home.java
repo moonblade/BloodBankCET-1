@@ -55,6 +55,7 @@ public class Home extends Activity {
 
         SharedPreferences prefs = getSharedPreferences("Preferences", MODE_PRIVATE);
         admin_unlocked=prefs.getBoolean(getResources().getString(R.string.pref_admin_unlock), false);
+        admin_logged_in=prefs.getBoolean(getResources().getString(R.string.pref_admin_logged_in),false);
 
         if(logged_in==1)
             invalidateOptionsMenu();
@@ -108,28 +109,30 @@ public class Home extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+
+
+        MenuItem admin_login=menu.findItem(R.id.action_admin_login);
+        MenuItem logout=menu.findItem(R.id.action_logout);
+        MenuItem loginn=menu.findItem(R.id.action_login);
+        admin_login.setVisible(admin_unlocked);
+
         if (logged_in==1) {
-
-            MenuItem loginn=menu.findItem(R.id.action_login);
             loginn.setVisible(false);
-
+            logout.setVisible(true);
+            admin_login.setVisible(false);
 
         }
 
         if (logged_in==0) {
-
-            MenuItem logout=menu.findItem(R.id.action_logout);
-            MenuItem menu_import=menu.findItem(R.id.action_import);
             logout.setVisible(false);
-            menu_import.setVisible(false);
+
         }
-        if(is_admin==0){
-            MenuItem export=menu.findItem(R.id.action_export);
-            export.setVisible(false);
+         if(admin_logged_in){
+            logout.setVisible(admin_logged_in);
+             admin_login.setVisible(!admin_logged_in);
+            loginn.setVisible(!admin_logged_in);
         }
 
-        MenuItem admin_login=menu.findItem(R.id.action_admin_login);
-        admin_login.setVisible(admin_unlocked);
         return true;
     }
 
@@ -154,51 +157,12 @@ public class Home extends Activity {
             Intent adminlogin=new Intent(getApplicationContext(),AdminLogin.class);
             startActivity(adminlogin);
         }
-        if (id == R.id.action_export) {
-//            csv_wtf();
-            File sd = Environment.getExternalStorageDirectory();
-            File data = Environment.getDataDirectory();
-            FileChannel source=null;
-            FileChannel destination=null;
-            String currentDBPath = "/data/"+ "moonblade.bloodbankcet" +"/databases/"+"_bdb";
-            String backupDBPath = "_bdb";
-            File currentDB = new File(data, currentDBPath);
-            File backupDB = new File(sd, backupDBPath);
-            try {
-                source = new FileInputStream(currentDB).getChannel();
-                destination = new FileOutputStream(backupDB).getChannel();
-                destination.transferFrom(source, 0, source.size());
-                source.close();
-                destination.close();
-                Toast.makeText(Home.this, "DataBase Exported!", Toast.LENGTH_LONG).show();
-            } catch(IOException e) {
-                Toast.makeText(Home.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
 
-
-            return  true;
-        }
-        if (id == R.id.action_import) {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-            try {
-                startActivityForResult(
-                        Intent.createChooser(intent, "Select a Database File"),
-                        FILE_SELECT_CODE);
-            } catch (android.content.ActivityNotFoundException ex) {
-                // Potentially direct the user to the Market with a Dialog
-                Toast.makeText(Home.this, "Please install a File Manager.",
-                        Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        }
-        if (id == R.id.action_logout){
+     if (id == R.id.action_logout){
             SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
             editor.putInt("Logged_in",0);
-            editor.putInt(getResources().getString(R.string.pref_is_admin),0);
+            editor.putBoolean(getResources().getString(R.string.pref_is_admin),false);
+            editor.putBoolean(getResources().getString(R.string.pref_admin_logged_in),false);
             editor.commit();
             Intent logout =new Intent (Home.this,Home.class);
             startActivity(logout);
