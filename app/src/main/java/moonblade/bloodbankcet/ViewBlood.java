@@ -81,6 +81,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
     private String url="http://moonblade.in/bloodbankcet/blood/fetchdetails.php";
     private long totdays;
     private int number_of_months;
+    private boolean postflag;
     int long_clicked=0;
     private int logged_in=0,is_admin=0;
     Spinner spinner_blood;
@@ -170,7 +171,6 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
 
                 } catch (JSONException e) {
-//                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -381,7 +381,8 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         @Override
         protected void onPostExecute(String result) {
            try{
-               ListDrawer();
+               ListDrawer("All");
+               postflag=true;
            }catch (Exception e){
 
            }
@@ -389,13 +390,19 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
 
     }// end async task
 
-    public void ListDrawer() {
+    public void ListDrawer(String opt) {
         final ListView data =(ListView)findViewById(R.id.lvdata);
 
         try {
             jsonResponse = new JSONObject(jsonResult);
             jsonMainNode = jsonResponse.optJSONArray("user_info");
-            ArrayList<Donor> newUsers = Donor.fromJson(jsonMainNode);
+            ArrayList<Donor> newUsers;
+            if(opt.equals("All"))
+                newUsers = Donor.fromJson(jsonMainNode);
+            else if(opt.contains("+") || opt.contains("-"))
+                newUsers = Donor.fromJsonbg(jsonMainNode,opt);
+            else
+                newUsers =Donor.fromJsonbranch(jsonMainNode,opt);
             DonorAdapter donorAdapter = new DonorAdapter(this,newUsers);
             donorAdapter.addAll(newUsers);
             data.setAdapter(donorAdapter);
@@ -429,9 +436,9 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         String blood_group = parent.getItemAtPosition(position).toString();
         ListView data=(ListView)findViewById(R.id.lvdata);
         if(blood_group.equals("All")){
-//            getdatanone(data);
+
         }else{
-//            getdatablood(data,blood_group);
+            ListDrawer(blood_group);
         }
     }
 
@@ -478,8 +485,7 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
             public boolean onQueryTextChange(String newText) {
                 // this is your adapter that will be filtered
-                ListView data=(ListView)findViewById(R.id.lvdata);
-                getdataBranch(data,newText);
+                ListDrawer(newText);
                 spinner_blood.setSelection(0);
                 return true;
             }
@@ -500,10 +506,11 @@ public class ViewBlood extends Activity implements AdapterView.OnItemSelectedLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String blood_group = parent.getItemAtPosition(position).toString();
                 ListView data=(ListView)findViewById(R.id.lvdata);
-                if(blood_group.equals("All")){
-//                    accessWebService(ViewBlood.this);
-                }else{
-                    getdatablood(data,blood_group);
+                if(postflag && blood_group.equals("All")){
+                    ListDrawer(blood_group);
+                }else if(postflag){
+                    ListDrawer(blood_group);
+
                 }
             }
 

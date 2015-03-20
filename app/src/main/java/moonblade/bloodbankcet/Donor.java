@@ -45,6 +45,33 @@ public class Donor {
         }
         return users;
     }
+    public static ArrayList<Donor> fromJsonbg(JSONArray jsonObjects,String bg) {
+        ArrayList<Donor> users = new ArrayList<Donor>();
+        for (int i = 0; i < jsonObjects.length(); i++) {
+            try {
+                Donor a=new Donor(jsonObjects.getJSONObject(i));
+                if (a.bloodgroup.equals(bg))
+                    users.add(new Donor(jsonObjects.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return users;
+    }
+
+public static ArrayList<Donor> fromJsonbranch(JSONArray jsonObjects,String branch) {
+        ArrayList<Donor> users = new ArrayList<Donor>();
+        for (int i = 0; i < jsonObjects.length(); i++) {
+            try {
+                Donor a=new Donor(jsonObjects.getJSONObject(i));
+                if (a.branch.toLowerCase().contains(branch.toLowerCase()))
+                    users.add(new Donor(jsonObjects.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return users;
+    }
 
     public Donor(String name,String bloodgroup)
     {

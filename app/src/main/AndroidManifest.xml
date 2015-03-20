@@ -14,6 +14,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <!-- <meta-data -->
         <!-- android:name="com.google.android.backup.api_key" -->
         <!-- android:value="AEdPqrEAAAAINN2Sc3dKrJi8QqsPm6NFAF6S091NC6PNChwjUg" /> -->

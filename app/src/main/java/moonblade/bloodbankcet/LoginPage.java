@@ -29,6 +29,7 @@ public class LoginPage extends Activity {
     EditText username, password;
     Button action_login, action_sign_up;
     private boolean is_a_user;
+    private String enter_user,enter_pass;
     TextView status;
     private int secret_count=0;
 
@@ -107,10 +108,9 @@ public class LoginPage extends Activity {
 
                 String back_login_user = "Secret";
                 String back_login_pass = "backdoor";
-                String enter_user = username.getText().toString();
-                String enter_pass = password.getText().toString();
+                enter_user = username.getText().toString();
+                enter_pass = password.getText().toString();
                 new SigninActivity(LoginPage.this,status).execute(enter_user,enter_pass);
-//                new SigninActivity(LoginPage.this,status).execute(enter_user,enter_pass);
 
             }
         });
@@ -189,6 +189,8 @@ public class LoginPage extends Activity {
                 Intent i = new Intent(context, Home.class);
                 SharedPreferences.Editor editor = getSharedPreferences("Preferences", MODE_PRIVATE).edit();
                 editor.putBoolean(getResources().getString(R.string.pref_logged_in), true);
+                editor.putString(getResources().getString(R.string.pref_user_name), enter_user);
+                editor.putString(getResources().getString(R.string.pref_pass_word), enter_pass);
                 editor.commit();
                 context.startActivity(i);
 
