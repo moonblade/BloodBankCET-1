@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.kazmik.andro.onlinedbtest.Loginsuccess">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blood Group"
+        android:id="@+id/tvfilterbg"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+         />
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinfiltbg"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/tvfilterbg"
+        android:layout_marginLeft="28dp"
+        android:layout_alignBottom="@+id/tvfilterbg"
+        android:layout_alignParentTop="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class"
+        android:id="@+id/tvfilterclass"
+        android:textSize="18dp"
+        android:layout_marginTop="21dp"
+        android:visibility="invisible"
+        android:layout_below="@+id/spinfiltbg"
+        android:layout_marginLeft="25dp"
+         />
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinfiltclass"
+        android:visibility="invisible"
+
+        android:layout_toRightOf="@+id/tvfilterclass"
+        android:layout_marginLeft="28dp"
+        android:layout_alignBottom="@+id/tvfilterclass"
+        android:layout_below="@+id/spinfiltbg" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class"
+        android:id="@+id/tvfilterbatch"
+        android:textSize="18dp"
+        android:layout_marginTop="29dp"
+        android:visibility="invisible"
+        android:layout_below="@+id/tvfilterclass"
+       android:layout_marginLeft="25dp" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Batch"
+        android:visibility="invisible"
+        android:id="@+id/etfilterbatch"
+        android:layout_alignBottom="@+id/tvfilterbatch"
+        android:layout_toRightOf="@+id/tvfilterbatch"
+        android:layout_marginLeft="25dp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/llfilterlist"
+
+
+        >
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+             >
+        </ListView>
+
+        </LinearLayout>
+
+
+
+
+</RelativeLayout>

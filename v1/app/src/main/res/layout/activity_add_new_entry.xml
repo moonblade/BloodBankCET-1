@@ -1,0 +1,190 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.kazmik.andro.onlinedbtest.AddNewEntry">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:text="Add New Entry"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ff000aff"
+            android:id="@+id/textView2" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name : "
+        android:id="@+id/tvanename"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etanename"
+        android:hint="Enter Name"
+        android:layout_above="@+id/tvaneclass"
+        android:layout_toRightOf="@+id/tvaneclass"
+        android:layout_marginLeft="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Class  : "
+        android:id="@+id/tvaneclass"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tvanename"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/saneclass"
+        android:layout_below="@+id/etanename"
+        android:layout_alignLeft="@+id/etanename"
+        android:layout_alignStart="@+id/etanename" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Batch  :"
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/etanebatch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Joining Year"
+        android:id="@+id/etanebatch"
+        android:layout_below="@+id/saneclass"
+        android:layout_alignLeft="@+id/saneclass"
+        android:layout_alignStart="@+id/saneclass" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Blood Group  : "
+        android:id="@+id/tvanebg"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sanebg"
+            android:layout_below="@+id/etanebatch"
+            android:layout_toRightOf="@+id/tvanebg"
+            android:layout_marginTop="17dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Mobile : "
+            android:id="@+id/tvanemob"
+            android:layout_below="@+id/sanebg"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:hint="Mobile number"
+            android:id="@+id/etanemob"
+            android:layout_below="@+id/sanebg"
+            android:layout_alignLeft="@+id/etanebatch"
+            android:layout_alignStart="@+id/etanebatch" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Address : "
+            android:id="@+id/tvaneaddr"
+            android:layout_below="@+id/tvanemob"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="23dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etaneaddr"
+            android:hint="Address"
+            android:layout_alignBottom="@+id/tvaneaddr"
+            android:layout_alignLeft="@+id/etanemob"
+            android:layout_alignStart="@+id/etanemob" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Last Donated On : "
+            android:id="@+id/tvanelastdon"
+            android:layout_below="@+id/tvaneaddr"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="21dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/etanelastdon"
+            android:hint="YYYY-MM-DD"
+            android:layout_alignBottom="@+id/tvanelastdon"
+            android:layout_alignRight="@+id/etaneaddr"
+            android:layout_alignEnd="@+id/etaneaddr"
+            android:layout_toRightOf="@+id/tvanelastdon" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/banesubmit"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/etanelastdon"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+        </ScrollView>
+
+</RelativeLayout>

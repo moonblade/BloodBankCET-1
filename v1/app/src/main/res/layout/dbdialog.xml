@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name :"
+        android:id="@+id/tvdname"
+        android:layout_marginLeft="86dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiagname"
+        android:layout_above="@+id/tvdclass"
+        android:layout_toRightOf="@+id/tvdname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class :"
+        android:id="@+id/tvdclass"
+        android:layout_below="@+id/tvdname"
+        android:layout_toLeftOf="@+id/tvdiagname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiagclass"
+        android:layout_below="@+id/tvdname"
+        android:layout_toRightOf="@+id/tvdname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blood Group :"
+        android:id="@+id/tvdbg"
+        android:layout_below="@+id/tvdbatch"
+        android:layout_toLeftOf="@+id/tvdiagclass" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiagbg"
+        android:layout_above="@+id/tvdmob"
+        android:layout_toRightOf="@+id/tvdbg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile :"
+        android:id="@+id/tvdmob"
+        android:layout_below="@+id/tvdbg"
+        android:layout_toLeftOf="@+id/tvdiagbg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiagmob"
+        android:layout_alignTop="@+id/tvdmob"
+        android:layout_toRightOf="@+id/tvdmob" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hostel :"
+        android:id="@+id/tvdhostel"
+        android:layout_below="@+id/tvdmob"
+        android:layout_toLeftOf="@+id/tvdiagmob" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiaghostel"
+        android:layout_below="@+id/tvdiagmob"
+        android:layout_toRightOf="@+id/tvdmob" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/bdiagdok"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/tvdlastdon"
+        android:layout_toRightOf="@+id/bdiagdupdate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Batch :"
+        android:id="@+id/tvdbatch"
+        android:layout_below="@+id/tvdclass"
+        android:layout_alignRight="@+id/tvdbg"
+        android:layout_alignEnd="@+id/tvdbg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiagbatch"
+        android:layout_alignBottom="@+id/tvdbatch"
+        android:layout_toRightOf="@+id/tvdbg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Donated on :"
+        android:id="@+id/tvdlastdon"
+        android:layout_alignTop="@+id/tvdiaglastdon"
+        android:layout_alignRight="@+id/tvdbg"
+        android:layout_alignEnd="@+id/tvdbg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvdiaglastdon"
+        android:layout_below="@+id/tvdiaghostel"
+        android:layout_toRightOf="@+id/tvdhostel" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/bdiagdupdate"
+        android:layout_alignTop="@+id/bdiagdok"
+        android:layout_alignLeft="@+id/tvdlastdon"
+        android:layout_alignStart="@+id/tvdlastdon" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:id="@+id/bdiagddel"
+        android:layout_alignTop="@+id/bdiagdok"
+        android:layout_toRightOf="@+id/bdiagdok" />
+
+</RelativeLayout>

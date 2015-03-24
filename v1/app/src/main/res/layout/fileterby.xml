@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relfilter">
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blood Group"
+        android:id="@+id/cbbg"
+        android:layout_marginTop="37dp"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class"
+        android:id="@+id/cbclass"
+        android:layout_below="@+id/cbbg"
+        android:layout_alignLeft="@+id/cbbg"
+        android:layout_alignStart="@+id/cbbg"
+        android:layout_marginTop="26dp"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Batch"
+        android:id="@+id/cbbatch"
+        android:layout_below="@+id/cbclass"
+        android:layout_alignLeft="@+id/cbclass"
+        android:layout_alignStart="@+id/cbclass"
+        android:layout_marginTop="26dp"
+        android:checked="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:id="@+id/bdiagfilter"
+        android:layout_below="@+id/cbbatch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+</RelativeLayout>
