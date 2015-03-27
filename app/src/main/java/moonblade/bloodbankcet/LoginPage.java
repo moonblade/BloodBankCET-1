@@ -75,8 +75,7 @@ public class LoginPage extends Activity {
                 /*int log = 0;
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-                SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
-
+             -=   SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                 String login_user = "Secret";
                 String login_pass = "backdoor";
                 String login_pref_user = pref.getString(getResources().getString(R.string.pref_user_name), "nimda");

@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.kazmik.andro.onlinedbtest.Loginsuccess" >
+    tools:context="com.moonblade.bloodbankcet.Loginsuccess" >
     <item android:id="@+id/filter"
         android:title="delete"
-        android:icon="@drawable/filter"
-        android:showAsAction="always" />
+        android:icon="@drawable/filter"/>
+        <!--app:showAsAction="always" -->
     <item android:id="@+id/action_newentry"
         android:title="Add New Entry"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:orderInCategory="100"/>
+        <!--app:showAsAction="never"-->
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:orderInCategory="100"/>
+       <!-- app:showAsAction="never" -->
 </menu>
